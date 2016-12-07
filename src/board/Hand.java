@@ -7,17 +7,19 @@ import java.util.List;
 import letter.Alphabet;
 
 public class Hand {
-	private int num = 7;
-	private List<Alphabet> hand = new ArrayList<>();
-	private List<List<String>> words = new ArrayList<>();
-	private int wordCount = 0;
+	private int num;
+	private List<Alphabet> hand;
+	private List<List<String>> words;
+	private int wordCount;
 
 	public Hand(List<Alphabet> l) {
 		num = l.size();
 		hand = new ArrayList<>(l);
+		words = new ArrayList<>();
 		for (int i = 0; i < num; i++) {
 			words.add(new ArrayList<>());
 		}
+		wordCount = 0;
 	}
 
 	public void genWords() {
