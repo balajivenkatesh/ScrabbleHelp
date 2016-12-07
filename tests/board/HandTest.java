@@ -38,10 +38,10 @@ public class HandTest {
 		genHandAssertCount(18, false);
 	}
 
-	private void genHandAssertCount(int count, boolean print) {
+	private void genHandAssertCount(int expectedCount, boolean print) {
 		h = new HandImpl(hand);
 		h.genWords();
-		assertEquals(count, h.getWordCount());
+		assertEquals(expectedCount, h.getWordCount());
 		
 		if (print) {
 			List<List<String>> words = h.getWords();

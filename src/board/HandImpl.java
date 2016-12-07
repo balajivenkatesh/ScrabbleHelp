@@ -22,9 +22,6 @@ public class HandImpl implements Hand {
 		wordCount = 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see board.Hand#genWords()
-	 */
 	@Override
 	public void genWords() {
 		genWords(new HashSet<>(), "", num);
@@ -56,17 +53,11 @@ public class HandImpl implements Hand {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see board.Hand#getWords()
-	 */
 	@Override
 	public List<List<String>> getWords() {
 		return words;
 	}
 	
-	/* (non-Javadoc)
-	 * @see board.Hand#getWordCount()
-	 */
 	@Override
 	public int getWordCount() {
 		return wordCount;

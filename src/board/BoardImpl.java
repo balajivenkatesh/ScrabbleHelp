@@ -26,17 +26,11 @@ public class BoardImpl implements Board {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see board.Board#getGrid()
-	 */
 	@Override
 	public Alphabet[][] getGrid() {
 		return grid;
 	}
 
-	/* (non-Javadoc)
-	 * @see board.Board#printBoard()
-	 */
 	@Override
 	public void printBoard() {
 		for (int i = 0; i < side; i++) {
@@ -47,9 +41,6 @@ public class BoardImpl implements Board {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see board.Board#setTile(int, int, letter.Alphabet)
-	 */
 	@Override
 	public void setTile(int i, int j, Alphabet a) throws Exception {
 		if (i >= side || j >= side) {
