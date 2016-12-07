@@ -1,6 +1,7 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class HandImpl implements Hand {
 	public HandImpl(List<Alphabet> l) {
 		num = l.size();
 		hand = new ArrayList<>(l);
+		hand.sort(new AlphabetCompare());
+		
 		words = new ArrayList<>();
 		for (int i = 0; i < num; i++) {
 			words.add(new ArrayList<>());
@@ -61,5 +64,19 @@ public class HandImpl implements Hand {
 	@Override
 	public int getWordCount() {
 		return wordCount;
+	}
+	
+	private class AlphabetCompare implements Comparator<Alphabet> {
+		@Override
+		public int compare(Alphabet a, Alphabet b) {
+			char ac = a.getChar(), bc = b.getChar();
+			if (ac > bc) {
+				return 1;
+			} else if (ac == bc) {
+				return 0;
+			} else {
+				return -1;
+			}
+		}
 	}
 }
