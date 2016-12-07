@@ -7,22 +7,26 @@ import letter.Alphabet;
 public class BoardTest {
 	@Test
 	public void testEmptyBoard() {
-		Board b = new Board();
+		Board b = newBoard();
 		b.printBoard();
 	}
 
 	@Test
 	public void testNonEmptyBoard() throws Exception {
-		Board b = new Board();
+		Board b = newBoard();
 		b.setTile(0, 0, Alphabet.A);
 		b.printBoard();
 	}
 
 	@Test
 	public void testCopyBoard() throws Exception {
-		Board b1 = new Board();
+		Board b1 = newBoard();
 		b1.setTile(0, 0, Alphabet.A);
-		Board b2 = new Board(b1);
+		Board b2 = new BoardImpl(b1);
 		b2.printBoard();
+	}
+	
+	private Board newBoard() {
+		return new BoardImpl();
 	}
 }
