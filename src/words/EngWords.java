@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -98,5 +99,16 @@ public class EngWords implements Words {
 	@Override
 	public int getWordsCount() {
 		return wordCount;
+	}
+	
+	@Override
+	public Collection<String> isValidWords(Collection<String> words) {
+		HashSet<String> invalid = new HashSet<>();
+		for (String word : words) {
+			if (!isWord(word)) {
+				invalid.add(word);
+			}
+		}
+		return invalid;
 	}
 }

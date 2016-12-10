@@ -1,5 +1,6 @@
 package words;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface Words {
@@ -10,4 +11,6 @@ public interface Words {
 	public List<String> listWords();
 
 	public int getWordsCount();
+
+	public Collection<String> isValidWords(Collection<String> words);
 }
