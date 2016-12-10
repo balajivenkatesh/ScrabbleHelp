@@ -20,4 +20,15 @@ public enum Alphabet {
 	public char getChar() {
 		return c;
 	}
+	
+	public static Alphabet getAlphabetEnum(char c) throws Exception {
+		if ('A' <= c && c >= 'Z') {
+			return Alphabet.values()[c - 'A'];
+		} else if (c == '*') {
+			return Any;
+		} else if (c == '_') {
+			return Empty;
+		}
+		throw new Exception();
+	}
 }
