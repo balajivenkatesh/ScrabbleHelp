@@ -1,13 +1,17 @@
 package board;
 
+import java.util.Collection;
 import java.util.List;
+
+import board.Board.Move;
 
 public interface Hand {
 
-	void genWords();
+	public void genWords();
 
-	List<List<String>> getWords();
+	public List<List<String>> getWords();
 
-	int getWordCount();
+	public int getWordCount();
 
+	public Collection<Move> getBestMove(Board board);
 }

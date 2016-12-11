@@ -37,7 +37,7 @@ public class HandTest {
 		hand.add(Alphabet.A);
 		genHandAssertCount(18, false);
 	}
-
+	
 	private void genHandAssertCount(int expectedCount, boolean print) {
 		h = new HandImpl(hand);
 		h.genWords();

@@ -1,10 +1,13 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 
+import board.Board.Move;
 import letter.Alphabet;
 
 public class HandImpl implements Hand {
@@ -64,6 +67,19 @@ public class HandImpl implements Hand {
 	@Override
 	public int getWordCount() {
 		return wordCount;
+	}
+	
+	@Override
+	public Collection<Move> getBestMove(Board board) {
+		Collection<Move> bestMoves = new PriorityQueue<>(10);
+		
+		for (int i = num - 1; i >= 0; i--) {
+			for (String s: words.get(i)) {
+				bestMoves.addAll(board.bestScoreMove(s));
+			}
+		}
+		
+		return bestMoves;
 	}
 	
 	private class AlphabetCompare implements Comparator<Alphabet> {
