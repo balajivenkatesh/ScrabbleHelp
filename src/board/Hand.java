@@ -1,7 +1,7 @@
 package board;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import board.Board.Move;
 
@@ -13,5 +13,5 @@ public interface Hand {
 
 	public int getWordCount();
 
-	public Collection<Move> getBestMove(Board board);
+	public PriorityQueue<Move> getBestMove(Board board);
 }

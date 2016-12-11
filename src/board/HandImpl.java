@@ -1,7 +1,7 @@
 package board;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +20,7 @@ public class HandImpl implements Hand {
 		num = l.size();
 		hand = new ArrayList<>(l);
 		hand.sort(new AlphabetCompare());
-		
+
 		words = new ArrayList<>();
 		for (int i = 0; i < num; i++) {
 			words.add(new ArrayList<>());
@@ -63,25 +63,25 @@ public class HandImpl implements Hand {
 	public List<List<String>> getWords() {
 		return words;
 	}
-	
+
 	@Override
 	public int getWordCount() {
 		return wordCount;
 	}
-	
+
 	@Override
-	public Collection<Move> getBestMove(Board board) {
-		Collection<Move> bestMoves = new PriorityQueue<>(10);
-		
+	public PriorityQueue<Move> getBestMove(Board board) {
+		PriorityQueue<Move> bestMoves = new PriorityQueue<>(Collections.reverseOrder());
+
 		for (int i = num - 1; i >= 0; i--) {
-			for (String s: words.get(i)) {
+			for (String s : words.get(i)) {
 				bestMoves.addAll(board.bestScoreMove(s));
 			}
 		}
-		
+
 		return bestMoves;
 	}
-	
+
 	private class AlphabetCompare implements Comparator<Alphabet> {
 		@Override
 		public int compare(Alphabet a, Alphabet b) {
