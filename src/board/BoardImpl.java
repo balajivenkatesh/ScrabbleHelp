@@ -134,9 +134,6 @@ public class BoardImpl implements Board {
 					}
 				}
 
-//				if (x == 7 && y == 3) {
-//					System.out.println(perpenWord);
-//				}
 				mainWordMultiplier *= wordMultiplier;
 				mainScore += letterMultiplier * cScore;
 			} else {
@@ -332,17 +329,21 @@ public class BoardImpl implements Board {
 			}
 		} else {
 			if (y > 0) {
-				String s = horiz[x][y - 1];
-				if (s.equals("")) {
-					char c = grid[x][y - 1].getChar();
+				y--;
+				String s = "";
+				while (y >= 0 && (s = horiz[x][y]).equals("")) {
+					char c = grid[x][y].getChar();
 					if ('A' <= c && c <= 'Z') {
-						return "" + c;
+						y--;
+					} else {
+						break;
 					}
 				}
 				return s;
 			}
 		}
 		return "";
+
 	}
 
 	private String getRightNeighbour(int x, int y, boolean fillVert) {
@@ -361,7 +362,7 @@ public class BoardImpl implements Board {
 	private int[][] dlIndex = { { 2, 2 }, { 2, 4 }, { 2, 6 }, { 2, 8 }, { 4, 2 }, { 6, 2 }, { 8, 2 }, { 8, 4 },
 			{ 8, 6 }, { 8, 8 }, { 6, 8 }, { 4, 8 }, { 2, 8 } };
 	private int[][] tlIndex = { { 0, 0 }, { 0, 10 }, { 10, 0 }, { 10, 10 }, { 3, 3 }, { 3, 7 }, { 7, 3 }, { 7, 7 } };
-	private int[][] dwIndex = { { 1, 1 }, { 1, 5 }, { 1, 9 }, { 5, 1 }, { 9, 1 }, { 9, 5 }, { 9, 5 }, { 9, 9 } };
+	private int[][] dwIndex = { { 1, 1 }, { 1, 5 }, { 1, 9 }, { 5, 1 }, { 5, 9 }, { 9, 1 }, { 9, 5 }, { 9, 5 }, { 9, 9 } };
 	private int[][] twIndex = { { 0, 2 }, { 0, 8 }, { 2, 0 }, { 8, 0 }, { 10, 2 }, { 10, 8 }, { 2, 10 }, { 8, 10 } };
 
 	private int getLetterMultiplier(int x, int y) {
