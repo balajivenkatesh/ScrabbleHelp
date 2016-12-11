@@ -34,7 +34,7 @@ public class EngWords implements Words {
 		if (s.length() < minSize || s.length() > maxSize) {
 			return false;
 		}
-		return allWords.get(s.length()).contains(s);
+		return allWords.get(s.length() - minSize).contains(s.toLowerCase());
 	}
 
 	@Override
