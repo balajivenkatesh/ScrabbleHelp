@@ -160,7 +160,35 @@ public class BoardImpl implements Board {
 			return FillWordResult.newFillWordError("Insufficient space");
 		}
 
+		updateVertiHoriz(iList.get(0), jList.get(0), fillVert);
+		
+		for (i = 0; i < iList.size(); i++) {
+			updateVertiHoriz(iList.get(i), jList.get(i), !fillVert);
+		}
+
 		return FillWordResult.newFillWordSuccess(0);
+	}
+	
+	private void updateVertiHoriz(int x, int y, boolean fillVert) {
+		int xStart = x;
+		int yStart = y;
+		String mainWord = getLeftNeighbour(x, y, fillVert);
+		if (!mainWord.equals("")) {
+			if (fillVert) {
+				xStart = xStart - mainWord.length();
+			} else {
+				yStart = yStart - mainWord.length();
+			}
+		}
+		mainWord = grid[x][y] + getRightNeighbour(x, y, fillVert);
+		if (mainWord.length() == 1) {
+			return;
+		}
+		if (fillVert) {
+			verti[xStart][yStart] = mainWord;
+		} else {
+			horiz[xStart][yStart] = mainWord;
+		}
 	}
 
 	@Override
@@ -170,7 +198,7 @@ public class BoardImpl implements Board {
 		bestScoreMove(s, false, bestMoves);
 		return bestMoves;
 	}
-	
+
 	private void bestScoreMove(String s, boolean fillVert, Collection<Move> bestMoves) {
 		for (int i = 0; i < side; i++) {
 			for (int j = 0; j < side; j++) {
