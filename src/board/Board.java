@@ -1,6 +1,6 @@
 package board;
 
-import java.util.Collection;
+import java.util.PriorityQueue;
 
 import letter.Alphabet;
 
@@ -14,11 +14,11 @@ public interface Board {
 
 	public void setTile(int i, int j, Alphabet a) throws Exception;
 
-	public FillWordResult fillWord(String s, int x, int y, boolean fillVert);
+	public FillWordResult fillWord(String s, int x, int y, boolean fillVert, boolean ignoreTouch);
 
 	public FillWordResult putWord(String s, int x, int y, boolean fillVert);
 	
-	public Collection<Move> bestScoreMove(String s);
+	public PriorityQueue<Move> bestScoreMove(String s);
 
 	public enum FillWordResultState {
 		SUCCESS, ERROR;
@@ -64,7 +64,7 @@ public interface Board {
 		
 		public Move(String s, int i, int j, boolean fill, int p) {
 			x = i;
-			y = i;
+			y = j;
 			fillVert = fill;
 			word = s;
 			score = p;
@@ -101,6 +101,11 @@ public interface Board {
 			} else {
 				return -1;
 			}
+		}
+		
+		@Override
+		public String toString() {
+			return "Move = " + word + " at [" + x +", " + y + "] " + (fillVert ? "vert" : "horiz") + " for " + score + " pts";
 		}
 	}
 
