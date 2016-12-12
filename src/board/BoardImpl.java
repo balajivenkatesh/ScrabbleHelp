@@ -124,6 +124,7 @@ public class BoardImpl implements Board {
 				String leftWord = getLeftNeighbour(i, j, !fillVert);
 				String rightWord = getRightNeighbour(i, j, !fillVert);
 				String perpenWord = leftWord + c + rightWord;
+
 				if (perpenWord.length() > 1) {
 					if (!engWords.isWord(perpenWord)) {
 						return FillWordResult.newFillWordError("No perpend word - " + perpenWord);
@@ -155,6 +156,7 @@ public class BoardImpl implements Board {
 		mainScore += Alphabet.getWordScore(mainRightWord);
 
 		String mainWord = sb.toString();
+
 		if (mainWord.equals(s) && !ignoreTouch && touch == false) {
 			return FillWordResult.newFillWordError("No touch");
 		}
@@ -362,7 +364,8 @@ public class BoardImpl implements Board {
 	private int[][] dlIndex = { { 2, 2 }, { 2, 4 }, { 2, 6 }, { 2, 8 }, { 4, 2 }, { 6, 2 }, { 8, 2 }, { 8, 4 },
 			{ 8, 6 }, { 8, 8 }, { 6, 8 }, { 4, 8 }, { 2, 8 } };
 	private int[][] tlIndex = { { 0, 0 }, { 0, 10 }, { 10, 0 }, { 10, 10 }, { 3, 3 }, { 3, 7 }, { 7, 3 }, { 7, 7 } };
-	private int[][] dwIndex = { { 1, 1 }, { 1, 5 }, { 1, 9 }, { 5, 1 }, { 5, 9 }, { 9, 1 }, { 9, 5 }, { 9, 5 }, { 9, 9 } };
+	private int[][] dwIndex = { { 1, 1 }, { 1, 5 }, { 1, 9 }, { 5, 1 }, { 5, 9 }, { 9, 1 }, { 9, 5 }, { 9, 5 },
+			{ 9, 9 } };
 	private int[][] twIndex = { { 0, 2 }, { 0, 8 }, { 2, 0 }, { 8, 0 }, { 10, 2 }, { 10, 8 }, { 2, 10 }, { 8, 10 } };
 
 	private int getLetterMultiplier(int x, int y) {
