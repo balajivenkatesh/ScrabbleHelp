@@ -125,6 +125,10 @@ public class BoardImpl implements Board {
 				String rightWord = getRightNeighbour(i, j, !fillVert);
 				String perpenWord = leftWord + c + rightWord;
 
+				if (s.equals("EEJAY") && x == 8 && y == 6) {
+					System.out.println(x + ", " + y);
+				}
+
 				if (perpenWord.length() > 1) {
 					if (!engWords.isWord(perpenWord)) {
 						return FillWordResult.newFillWordError("No perpend word - " + perpenWord);
@@ -290,9 +294,9 @@ public class BoardImpl implements Board {
 		}
 
 		// Insufficient space
-		int init = x;
+		int init = y;
 		if (fillVert) {
-			init = y;
+			init = x;
 		}
 		if (init + len > side) {
 			return FillWordResult.newFillWordError("Insufficient space before start");
@@ -318,28 +322,36 @@ public class BoardImpl implements Board {
 		if (fillVert) {
 			if (x > 0) {
 				x--;
-				String s = "";
-				while (x >= 0 && (s = verti[x][y]).equals("")) {
+				String s = "", tmpS = "";
+				while (x >= 0 && (tmpS = verti[x][y]).equals("")) {
 					char c = grid[x][y].getChar();
 					if ('A' <= c && c <= 'Z') {
+						s = "" + c;
 						x--;
 					} else {
 						break;
 					}
+				}
+				if (!tmpS.equals("")) {
+					s = tmpS;
 				}
 				return s;
 			}
 		} else {
 			if (y > 0) {
 				y--;
-				String s = "";
-				while (y >= 0 && (s = horiz[x][y]).equals("")) {
+				String s = "", tmpS = "";
+				while (y >= 0 && (tmpS = horiz[x][y]).equals("")) {
 					char c = grid[x][y].getChar();
 					if ('A' <= c && c <= 'Z') {
+						s = "" + c;
 						y--;
 					} else {
 						break;
 					}
+				}
+				if (!tmpS.equals("")) {
+					s = tmpS;
 				}
 				return s;
 			}
@@ -395,5 +407,13 @@ public class BoardImpl implements Board {
 			}
 		}
 		return false;
+	}
+	
+	public void setHoriz(int x, int y, String s) {
+		horiz[x][y] = s;
+	}
+	
+	public void setVerti(int x, int y, String s) {
+		verti[x][y] = s;
 	}
 }
